@@ -1,12 +1,23 @@
-import { Button, Card, Form, Input } from 'antd'
+import { Button, Card, Form, Input, message } from 'antd'
 import './index.scss'
 import logo from '../../assets/logo.png'
+import { useDispatch } from 'react-redux'
+import { fetchLogin } from '../../store/modules/user'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  // 13800000002
+  // 246810
 
-  const onFinish = (values) => {
-    console.log(values);
-    
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const onFinish = async (values) => {
+    // console.log(values);
+    // 出发异步action
+    await dispatch(fetchLogin(values))
+    navigate('/')
+    message.success('登陆成功')
   } 
 
   return (
@@ -19,7 +30,7 @@ const Login = () => {
           >
           <Form.Item
             label="手机号"
-            name="phone"
+            name="mobile"
             rules={[
               { required: true, 
                 message: '请输入手机号码!' 
