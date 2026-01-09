@@ -1,12 +1,15 @@
-import React from 'react'
-import { Button } from 'antd'
-import { RouterProvider } from 'react-router-dom'
-import router from './router'
+import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import router from './router';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const App = () => {
   return (
-    <RouterProvider router={router}/>
-  )
-}
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
+};
 
-export default App
+export default App;
